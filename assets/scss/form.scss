@@ -1,0 +1,46 @@
+.search-issue-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.icon-input-box{
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  border: 2px solid $red;
+  border-radius: 5px;
+  margin-bottom: 25px;
+
+  .material-icons{
+    padding: 10px;
+    color: $gold !important;
+  }
+}
+
+.text-input{
+  background: none;
+  border: 2px solid $red;
+  outline: none;
+  padding: 10px 0 11px 17px;
+  font-family: muli, sans-serif;
+  font-size: 16px;
+  width: 300px;
+
+  &--hover{
+    border: none;
+    border-bottom: 2px solid $red;
+    padding: 0 0 10px 0;
+  }
+}
+
+.issue-title-input{
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+label{
+  display: none;
+}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="grid page">
+        <a href="{{ path('issues_overview') }}" class="back-navigation">
+            <span class="material-icons back-arrow">west</span>
+            <span>Terug</span>
+        </a>
+
+        <div class="issue-wrapper">
+            <span class="title">{{ issue.title }}</span>
+            <div>{{ issue.content|raw }}</div>
+        </div>
+    </div>
+{% endblock %}

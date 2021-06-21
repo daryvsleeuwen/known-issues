@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="grid page">
+        {{ dump(form) }}
+    </div>
+
+    {{ encore_entry_script_tags('issue-editor') }}
+{% endblock %}

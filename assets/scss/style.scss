@@ -1,0 +1,89 @@
+@import 'vars';
+@import 'misc';
+@import 'form';
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: muli, sans-serif;
+  font-size: 18px;
+  color: $black;
+}
+
+.issue-box{
+  width: 800px;
+  max-width: 100%;
+  height: unset;
+  margin: 0 auto 85px auto;
+  transition: all 400ms $ease;
+  overflow: hidden;
+
+  .main-button--small{
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
+.issue-header{
+  background: $grey;
+  border-radius: 5px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+
+  .material-icons{
+    color: $red !important;
+    font-size: 30px;
+    cursor: pointer !important;
+    user-select: none;
+  }
+}
+
+.issue-title{
+  margin: 0 !important;
+  user-select: none;
+}
+
+.issue-content-box{
+  width: calc(100% - 40px);
+  max-height: 220px;
+  margin: 0 auto 20px auto;
+  overflow: hidden;
+}
+
+.centered-text{
+  text-align: center;
+}
+
+.back-navigation{
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 100px;
+
+  &:hover{
+    .back-arrow{
+      transform: translateX(-10px);
+    }
+  }
+}
+
+.back-arrow{
+  font-size: 35px !important;
+  color: $red;
+  margin-right: 10px;
+  pointer-events: none;
+  transition: transform 300ms $ease;
+}
+
+.issue-wrapper{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.issue-edit-title{
+  font-size: 32px;
+  margin-bottom: 80px;
+}

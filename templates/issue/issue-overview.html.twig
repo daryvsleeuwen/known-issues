@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="grid page">
+        <div class="flex j-end">
+            <a class="main-button" href="{{ path('create_issue') }}">Nieuwe issue<span
+                        class="material-icons main-button--icon">add</span></a>
+        </div>
+        <div class="search-issue-box">
+            <span class="title">Zoek een known issue</span>
+            <div class="icon-input-box">
+                <input class="text-input search-input --noborder" type="text" placeholder="Issue zoekwoord"/>
+                <span class="material-icons">search</span>
+            </div>
+        </div>
+
+        <div class="issues-dashboard">
+            {% if issues|length > 0 %}
+                {% for issue in issues %}
+                    <div class="issue-box" data-keywords="">
+                        <div class="issue-header">
+                            <span class="title issue-title">{{ issue.title }}</span>
+                            <span class="material-icons">expand_more</span>
+                        </div>
+                        <div class="issue-content-box">
+                            {{ issue.content|raw }}
+                        </div>
+                        <div class="flex j-end">
+                            <a class="main-button main-button--small" href="{{ path('issue', {id: issue.id}) }}">Bekijk
+                                issue</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center">Er zijn nog geen known issues</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+ {% block javascripts %}
+     {{ encore_entry_script_tags('app') }}
+ {% endblock %}
