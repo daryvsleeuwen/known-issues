@@ -21,6 +21,7 @@ p{
   background: $black;
   color: white;
   font-size: 16px;
+  font-family: muli, sans-serif !important;
   cursor: pointer;
   outline: none;
   border: none;
@@ -38,6 +39,7 @@ p{
   border-radius: 5px;
   padding: 10px 15px;
   margin-bottom: 25px;
+  height: fit-content;
 
   &--icon{
     margin-bottom: -4px;
@@ -51,6 +53,11 @@ p{
   &--small{
     padding: 10px 15px;
     font-size: 15px;
+
+    .material-icons{
+      font-size: 20px !important;
+      pointer-events: none;
+    }
   }
 }
 
@@ -74,7 +81,7 @@ a{
   display: block;
   font-size: 22px;
   font-weight: 600;
-  margin-bottom: 15px
+  margin-bottom: 15px;
 }
 
 .material-icons{
@@ -93,15 +100,39 @@ a{
   display: flex;
 }
 
-j-end{
+.j-end{
   justify-content: flex-end;
 }
 
-j-spacebetween{
+.j-spacebetween{
   justify-content: space-between;
+}
+
+.a-center{
+  align-items: center;
 }
 
 .full-w{
   width: 100%;
+}
+
+.ml{
+  margin-left: 15px;
+}
+
+.mr{
+  margin-right: 15px;
+}
+
+.page-header{
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 100px auto;
+
+  .main-button{
+    margin-bottom: 0;
+  }
 }
 

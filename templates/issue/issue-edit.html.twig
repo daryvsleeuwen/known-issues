@@ -2,7 +2,27 @@
 
 {% block body %}
     <div class="grid page">
-        {{ dump(form) }}
+        <div class="page-header">
+            <a href="{{ path('issues_overview') }}" class="back-navigation">
+                <span class="material-icons back-arrow">west</span>
+                <span>Home</span>
+            </a>
+
+            <div class="flex a-center">
+                {% if app.flashes('succesfull-save') is defined %}
+{#                    <span class="material-icons succesfull-save-flash succesfull-flash" style="margin-right: 20px;">check</span>#}
+                {% endif %}
+                <button type="submit" class="main-button main-button--small issue-edit-submitter" form="form-{{ issue.id }}">Opslaan</button>
+            </div>
+        </div>
+
+
+        <div class="issue-wrapper">
+            {{ form_start(form, {'attr': {'class': 'issue-edit-form', 'id': 'form-' ~ issue.id}}) }}
+            {{ form_widget(form.title) }}
+            <div class="issue-editor" data-content="{{ issue.content }}"></div>
+            {{ form_end(form) }}
+        </div>
     </div>
 
     {{ encore_entry_script_tags('issue-editor') }}

@@ -1,0 +1,15 @@
+@keyframes fade-scale-out {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateX(-50%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.7) translateX(-50%);
+  }
+}
+
+.fade-scale-out{
+  animation: fade-scale-out 300ms $ease;
+}

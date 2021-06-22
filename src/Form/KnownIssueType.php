@@ -20,13 +20,12 @@ class KnownIssueType extends AbstractType
                 'attr' =>['placeholder' => 'Issue titel','class' => 'issue-title-input text-input text-input--hover']
             ])
             ->add('content', TextType::class, [
+                'required' => false,
                 'attr' =>['class' => 'text-input']
             ])
             ->add('keywords', TextType::class, [
+                'required' => false,
                 'attr' =>['class' => 'text-input keyword-input']
-            ])
-            ->add('Issue_aanmaken', SubmitType::class, [
-                'attr' =>['class' => 'main-button main-button issue-edit-submitter']
             ])
         ;
     }

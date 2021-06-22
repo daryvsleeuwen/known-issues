@@ -18,17 +18,17 @@ class Issue
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=4000, nullable=true)
      */
     private $content;
 
     /**
-     * @ORM\Column(type="string", length=5000)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $keywords;
 

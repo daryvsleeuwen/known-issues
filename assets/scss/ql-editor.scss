@@ -1,0 +1,55 @@
+.ql-editor{
+  font-family: muli, sans-serif !important;
+  font-size: 18px;
+  padding: 15px 20px;
+}
+
+.ql-toolbar{
+  border-radius: 5px;
+  background: $red;
+  color: white !important;
+  margin-bottom: 10px;
+  border: none !important;
+
+  button:not(.ql-picker-options), span:is(.ql-picker-label) {
+    path, line, polygon, rect{
+      stroke: white !important
+    }
+
+    circle{
+      fill: white !important;
+    }
+
+    polyline{
+      stroke: white !important;
+      fill: white !important;
+    }
+  }
+
+  button{
+    width: unset !important;
+    height: 27px !important;
+  }
+}
+
+.ql-header{
+  color: white !important;
+  font-family: muli, sans-serif !important;
+
+  .ql-picker-item{
+    color: $black !important;
+  }
+
+  .ql-picker-label{
+    border: none !important;
+    color: white !important;
+
+    polygon{
+      stroke: white !important;
+    }
+  }
+}
+
+.ql-editor.ql-blank::before{
+  left: 20px !important;
+}

@@ -25,7 +25,7 @@ class IssueController extends AbstractController
     }
 
     /**
-     * @Route("/", name="issues_overview")
+     * @Route("/issues", name="issues_overview")
      */
     public function overview(IssueRepository  $issuesRepo)
     {
@@ -55,18 +55,17 @@ class IssueController extends AbstractController
             return $this->redirectToRoute('issues_overview');
         }
 
-        return $this->render('issue/issue-create.html.twig', [
+        return $this->render('issue/issue-edit.html.twig', [
             'form' => $form->createView(),
+            'issue' => $issue
         ]);
     }
 
     /**
-     * @Route("/issue/edit/{id}", name="edit_isue")
+     * @Route("/issue/edit/{id}", name="edit_issue")
      */
-    public function edit(int $id, IssueRepository $issuesRepo, Request $request)
+    public function edit(Issue $issue, Request $request)
     {
-        $issue = $issuesRepo->find($id);
-
         $form = $this->createForm(KnownIssueType::class, $issue);
         $form->handleRequest($request);
 
@@ -77,9 +76,7 @@ class IssueController extends AbstractController
             $em->persist($issue);
             $em->flush();
 
-            return $this->render('issue/issue-show.html.twig', [
-                'issue' => $issue
-            ]);
+            $this->addFlash('successfull-save', 'opgeslagen');
         }
 
         return $this->render('issue/issue-edit.html.twig', [
@@ -89,16 +86,17 @@ class IssueController extends AbstractController
     }
 
     /**
-     * @Route("/issues/delete/{id}", name="delete_isue")
+     * @Route("/issue/delete/{id}", name="delete_issue")
      */
-    public function delete(int $id, IssueRepository  $issuesRepo)
+    public function delete(int $id, IssueRepository $issuesRepo)
     {
-        $issue = $issuesRepo->find(1);
-        $issues = $issuesRepo->findAll();
+        $issue = $issuesRepo->find($id);
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($issue);
         $em->flush();
+
+        $this->addFlash('successfull-delete', "Issue '". $issue->getTitle() ."' is verwijderd");
 
         return $this->redirectToRoute('issues_overview');
     }

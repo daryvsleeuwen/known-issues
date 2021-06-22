@@ -27,6 +27,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. admin.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
+    .addEntry('search-filterer', './assets/js/search-filterer.js')
     .addEntry('issue-editor', './assets/js/issue-editor.js')
     .addEntry('app', './assets/js/app.js')
     .addEntry('style', './assets/scss/style.scss')

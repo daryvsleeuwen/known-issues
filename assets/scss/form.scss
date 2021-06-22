@@ -28,10 +28,12 @@
   font-family: muli, sans-serif;
   font-size: 16px;
   width: 300px;
+  max-width: 100%;
+  border-radius: 5px;
 
   &--hover{
     border: none;
-    border-bottom: 2px solid $red;
+    border-bottom: 3px solid $red;
     padding: 0 0 10px 0;
   }
 }
@@ -43,4 +45,22 @@
 
 label{
   display: none;
+}
+
+.input-label{
+  display: block;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+form:is(.known-issue-edit){
+  .text-input--hover{
+    width: 400px;
+  }
+}
+
+#known_issue_content, #known_issue_keywords{
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }

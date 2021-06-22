@@ -2,10 +2,18 @@
 
 {% block body %}
     <div class="grid page">
-        <a href="{{ path('issues_overview') }}" class="back-navigation">
-            <span class="material-icons back-arrow">west</span>
-            <span>Terug</span>
-        </a>
+        <div class="page-header">
+            <a href="{{ path('issues_overview') }}" class="back-navigation">
+                <span class="material-icons back-arrow">west</span>
+                <span>Home</span>
+            </a>
+
+            <div class="flex a-center">
+                <a class="main-button main-button--small" href="{{ path('edit_issue', {id: issue.id}) }}">Bewerken</a>
+                <a class="main-button main-button--small delete-button ml" href="{{ path('delete_issue', {id: issue.id}) }}"><span class="material-icons">delete</span></a>
+
+            </div>
+        </div>
 
         <div class="issue-wrapper">
             <span class="title">{{ issue.title }}</span>

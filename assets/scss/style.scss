@@ -1,13 +1,19 @@
 @import 'vars';
 @import 'misc';
 @import 'form';
+@import 'ql-editor';
+@import 'animations';
 
 body{
   margin: 0;
   padding: 0;
-  font-family: muli, sans-serif;
+  font-family: muli, sans-serif !important;
   font-size: 18px;
   color: $black;
+}
+
+.issues-dashboard{
+  word-break: break-all;
 }
 
 .issue-box{
@@ -46,11 +52,29 @@ body{
   user-select: none;
 }
 
+.issue-editor{
+  border-radius: 5px !important;
+  border: 2px solid $gold !important;
+}
+
 .issue-content-box{
   width: calc(100% - 40px);
   max-height: 220px;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 10px auto;
   overflow: hidden;
+  word-break: break-word;
+  position: relative;
+
+  &::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 110;
+    background: linear-gradient(180deg, transparent 0%, transparent 70%, white 100%);
+  }
 }
 
 .centered-text{
@@ -61,7 +85,6 @@ body{
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  margin-bottom: 100px;
 
   &:hover{
     .back-arrow{
@@ -86,4 +109,20 @@ body{
 .issue-edit-title{
   font-size: 32px;
   margin-bottom: 80px;
+}
+
+.flash-message{
+  display: flex;
+  color: $green;
+  font-size: 17px;
+  position: absolute;
+  z-index: 100;
+  transform: scale(1) translateX(-50%);
+  transform-origin: center;
+  top: 40px;
+  left: 50%;
+
+  &--alert{
+    color: $red;
+  }
 }
