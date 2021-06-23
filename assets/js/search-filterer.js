@@ -1,8 +1,10 @@
 window.addEventListener('load', () =>{
     let issuesdashboard = document.querySelector('.issues-dashboard');
+    let wrapper = document.querySelector('.issues-box-wrapper');
     let issues = document.querySelectorAll('.issue-box');
     let emptysearchstate = document.querySelector('.empty-search-state');
     let searcher = document.querySelector('.search-input');
+    let full = wrapper.innerHTML;
 
     searcher.addEventListener('input', () =>{
         filterIssues(searcher.value);
@@ -12,7 +14,7 @@ window.addEventListener('load', () =>{
 
     const filterIssues = (filterstring) =>{
         let filtered = [];
-        issuesdashboard.innerHTML = "";
+        wrapper.innerHTML = "";
 
         issues.forEach((issuebox) =>{
             let title = issuebox.querySelector('.issue-title').textContent;
@@ -25,16 +27,14 @@ window.addEventListener('load', () =>{
         });
 
         if(filtered.length === 0){
-            issuesdashboard.textContent = `Geen zoekresultaten voor '${filterstring}'`;
-            issuesdashboard.classList.add('centered-text');
+            wrapper.textContent = `Geen zoekresultaten voor '${filterstring}'`;
             emptysearchstate.classList.remove('hidden');
         }
         else{
-            issuesdashboard.classList.remove('centered-text');
             emptysearchstate.classList.add('hidden');
 
             filtered.forEach((filteredissue) =>{
-                issuesdashboard.appendChild(filteredissue);
+                wrapper.appendChild(filteredissue);
             });
         }
     }

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inloggen{% endblock %}
+
+{% block body %}
+    <div class="login-screen">
+{#            {% if error %}#}
+{#                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+{#            {% endif %}#}
+
+        {% for flash in app.flashes('add-issue-login') %}
+            <span class="flash-message">{{ flash }}</span>
+        {% endfor %}
+
+        {% for flash in app.flashes('edit-issue-login') %}
+            <span class="flash-message">{{ flash }}</span>
+        {% endfor %}
+
+            <div class="login-carousel shadow">
+                <div class="login-box">
+                    <div class="login-slider-box">
+                        <form method="post">
+                            <span class="login-title">Inloggen</span>
+                            <div class="input-box">
+                                <span class="input-label">E-mailadres</span>
+                                <div class="icon-input-box">
+                                    <input type="text" name="email" class="text-input">
+                                    <span class="material-icons">email</span>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <span class="input-label">Wachtwoord</span>
+                                <div class="icon-input-box">
+                                    <input type="password" name="password" class="text-input">
+                                    <span class="material-icons">lock</span>
+                                </div>
+                            </div>
+                            <div class="flex j-end full-w">
+                                <button class="main-button main-button--full" type="submit">Inloggen</button>
+                            </div>
+
+                            <span class="login-notification">Heb je nog geen account? <span class="register-linker">Registreer nu</span></span>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+{% endblock %}

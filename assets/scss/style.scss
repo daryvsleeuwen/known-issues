@@ -13,14 +13,37 @@ body{
 }
 
 .issues-dashboard{
+  width: 800px;
+  max-width: 100%;
+  margin: 0 auto;
   word-break: break-all;
 }
 
+.overview-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  margin: 0 auto 60px auto;
+
+  .icon-input-box, .main-button {
+    margin: 0;
+  }
+}
+
+.empty-search-icon{
+  width: 100px;
+  margin-top: 30px;
+}
+
+.issues-box-wrapper{
+  width: 100%;
+}
+
 .issue-box{
-  width: 800px;
-  max-width: 100%;
+  width: 100%;
   height: unset;
-  margin: 0 auto 85px auto;
+  margin-bottom: 85px;
   transition: all 400ms $ease;
   overflow: hidden;
 
@@ -113,7 +136,7 @@ body{
 
 .flash-message{
   display: flex;
-  color: $green;
+  color: $black;
   font-size: 17px;
   position: absolute;
   z-index: 100;
@@ -121,6 +144,10 @@ body{
   transform-origin: center;
   top: 40px;
   left: 50%;
+
+  &--succes{
+    color: $green;
+  }
 
   &--alert{
     color: $red;

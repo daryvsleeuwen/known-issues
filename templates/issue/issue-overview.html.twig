@@ -5,41 +5,45 @@
         <span class="flash-message succesfull-flash">{{ flash }}</span>
     {% endfor %}
     <div class="grid page">
-        <div class="flex j-end">
-            <a class="main-button" href="{{ path('create_issue') }}">Nieuwe issue<span
-                        class="material-icons main-button--icon">add</span></a>
-        </div>
-        <div class="search-issue-box">
-            <span class="title">Zoek een known issue</span>
-            <div class="icon-input-box">
-                <input class="text-input search-input --noborder" type="text" placeholder="Issue zoekwoord"/>
-                <span class="material-icons">search</span>
+        <div class="issues-dashboard">
+            <div class="overview-header">
+                <div class="search-issue-box">
+                    <span class="title">Zoek een known issue</span>
+                    <div class="icon-input-box">
+                        <input class="text-input icon-input search-input" type="text" placeholder="Issue zoekwoord"/>
+                        <span class="material-icons">search</span>
+                    </div>
+                </div>
+                <a class="main-button" href="{{ path('create_issue') }}">Nieuwe issue<span
+                            class="material-icons main-button--icon">add</span></a>
+            </div>
+
+            <div class="issues-box-wrapper">
+                {% if issues|length > 0 %}
+                    {% for issue in issues|reverse %}
+                        <div class="issue-box" data-keywords="">
+                            <div class="issue-header">
+                                <span class="title issue-title">{{ issue.title }}</span>
+                                <span class="material-icons">expand_more</span>
+                            </div>
+                            <div class="issue-content-box">
+                                {{ issue.content|raw }}
+                            </div>
+                            <div class="flex j-end">
+                                <a class="main-button main-button--small" href="{{ path('issue', {id: issue.id}) }}">Bekijk
+                                    issue</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Er zijn nog geen known issues</p>
+                {% endif %}
+            </div>
+
+            <div class="empty-search-state hidden">
+                <img class="empty-search-icon" src="assets//images/empty-search-state.svg">
             </div>
         </div>
-
-        <div class="issues-dashboard">
-            {% if issues|length > 0 %}
-                {% for issue in issues|reverse %}
-                    <div class="issue-box" data-keywords="">
-                        <div class="issue-header">
-                            <span class="title issue-title">{{ issue.title }}</span>
-                            <span class="material-icons">expand_more</span>
-                        </div>
-                        <div class="issue-content-box">
-                            {{ issue.content|raw }}
-                        </div>
-                        <div class="flex j-end">
-                            <a class="main-button main-button--small" href="{{ path('issue', {id: issue.id}) }}">Bekijk
-                                issue</a>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <p style="text-align: center">Er zijn nog geen known issues</p>
-            {% endif %}
-        </div>
-
-        <img style="margin: 20px auto 0 auto; width: 150px; display: block" class="empty-search-state hidden" src="https://bigcats.be/images/resized/750x-header-cat.jpg">
     </div>
 
     {{ encore_entry_script_tags('search-filterer') }}

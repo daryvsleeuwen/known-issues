@@ -40,49 +40,61 @@ class IssueController extends AbstractController
      */
     public function create(Request $request)
     {
-        $issue = new Issue();
+        if ($this->getUser()) {
+            $issue = new Issue();
 
-        $form = $this->createForm(KnownIssueType::class, $issue);
-        $form->handleRequest($request);
+            $form = $this->createForm(KnownIssueType::class, $issue);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $issue = $form->getData();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $issue = $form->getData();
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($issue);
-            $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($issue);
+                $em->flush();
 
-            return $this->redirectToRoute('issues_overview');
+                return $this->redirectToRoute('issues_overview');
+            }
+
+            return $this->render('issue/issue-edit.html.twig', [
+                'form' => $form->createView(),
+                'issue' => $issue
+            ]);
         }
-
-        return $this->render('issue/issue-edit.html.twig', [
-            'form' => $form->createView(),
-            'issue' => $issue
-        ]);
+        else{
+            $this->addFlash('add-issue-login', 'Log eerst in voordat je een nieuwe issue kan aanmaken');
+            return $this->redirectToRoute('app_login');
+        }
     }
 
     /**
-     * @Route("/issue/edit/{id}", name="edit_issue")
+     * @Route("/issue/{id}/edit", name="edit_issue")
      */
     public function edit(Issue $issue, Request $request)
     {
-        $form = $this->createForm(KnownIssueType::class, $issue);
-        $form->handleRequest($request);
+        if ($this->getUser()) {
+            $form = $this->createForm(KnownIssueType::class, $issue);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $issue = $form->getData();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $issue = $form->getData();
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($issue);
-            $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($issue);
+                $em->flush();
 
-            $this->addFlash('successfull-save', 'opgeslagen');
+                $this->addFlash('successfull-save', 'opgeslagen');
+            }
+
+            return $this->render('issue/issue-edit.html.twig', [
+                'form' => $form->createView(),
+                'issue' => $issue
+            ]);
         }
-
-        return $this->render('issue/issue-edit.html.twig', [
-            'form' => $form->createView(),
-            'issue' => $issue
-        ]);
+        else{
+            $this->addFlash('edit-issue-login', 'Log eerst in voordat je een issue kan bewerken');
+            return $this->redirectToRoute('app_login');
+        }
     }
 
     /**
@@ -90,14 +102,20 @@ class IssueController extends AbstractController
      */
     public function delete(int $id, IssueRepository $issuesRepo)
     {
-        $issue = $issuesRepo->find($id);
+        if ($this->getUser()) {
+            $issue = $issuesRepo->find($id);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($issue);
-        $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($issue);
+            $em->flush();
 
-        $this->addFlash('successfull-delete', "Issue '". $issue->getTitle() ."' is verwijderd");
+            $this->addFlash('successfull-delete', "Issue '". $issue->getTitle() ."' is verwijderd");
 
-        return $this->redirectToRoute('issues_overview');
+            return $this->redirectToRoute('issues_overview');
+        }
+        else{
+            $this->addFlash('add-issue-login', 'Log eerst in voordat je een issue kan verwijderen');
+            return $this->redirectToRoute('app_login');
+        }
     }
 }
